@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using SQLite;
 using People.Models;
+using System.Collections.Generic;
 
 namespace People
 {
@@ -20,8 +21,9 @@ namespace People
             /* PersonRepositoryCRUD Repo =
              new PersonReposirotyCRUD("C:\dev\datos");*/
         }
+       
 
-        public void CreatePerson(Person newPerson)
+    public void CreatePerson(Person newPerson)
         {
             int result = 0;
             result = conn.Insert(newPerson); 
@@ -37,6 +39,13 @@ namespace People
                 StatusMessage =
                     $"Registro no Insertado!";
             }
+
+            
         }
-    }
+
+        public List<Person> GetAllPeople()
+            {
+                return conn.Table<Person>().ToList();
+            }
+}
 }
